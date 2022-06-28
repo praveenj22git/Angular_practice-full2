@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html ng-app="CustApp">
+<head>
+    <meta charset="utf-8" />
+    <title>Sorting</title>
+    <script src="Scripts/angular.min.js"></script>
+    <link href="Styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script type="text/javascript">
+        var app = angular
+            .module("CustApp", [])
+            .controller("myController", function ($scope) {
+
+                var employees = [
+                    { name: "Ben", dateOfBirth: new Date("November 23, 1980"), gender: "Male", salary: 55000 },
+                    { name: "Sara", dateOfBirth: new Date("May 05, 1970"), gender: "Female", salary: 68000 },
+                    { name: "Mark", dateOfBirth: new Date("August 15, 1974"), gender: "Male", salary: 57000 },
+                    { name: "Pam", dateOfBirth: new Date("October 27, 1979"), gender: "Female", salary: 53000 },
+                    { name: "Todd", dateOfBirth: new Date("December 30, 1983"), gender: "Male", salary: 60000 }
+                ];
+
+                $scope.employees = employees;
+                $scope.sortColumn = "name";
+                $scope.reversesort = false;
+
+                $scope.sortData = function (column) {
+
+                    $scope.reversesort = ($scope.sortColumn == column) ? !$scope.reversesort : false;
+                    $scope.sortColumn = column;
+
+                }
+                $scope.getSortClass = function (column) {
+                    if ($scope.sortColumn == column) {
+                        return $scope.reversesort ? 'arrow-down':'arrow-up'
+                    }
+                    return '';
+                }
+                $scope.search = function (item) {
+                    if ($scope.searchText == undefined) {
+                        return true;
+                    }
+                    else {
+                        if (item.name.toLowerCase().indexOf($scope.searchText2.toLowerCase()) != -1 ||
+                            item.gender.toLowerCase().indexOf($scope.searchText2.toLowerCase()) != -1) {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                };
+            });
+
+    </script>
+</head>
+<body>
+    <div ng-controller="myController">
+        Order By:<select ng-model="sortColumn">
+            <option value="name">Name ASC </option>
+            <option value="gender">gender ASC </option>
+            <option value="dateOfBirth">dateOfBirth </option>
+            <option value="salary">salary Des </option>
+        </select>
+        <br />
+        <b>Search:</b><input type="text" placeholder="Search Name" ng-model="searchText.name" />
+        <b>Search:</b><input type="text" placeholder="Search gender" ng-model="searchText.gender" />
+        <b>Search:</b><input type="text" placeholder="Search Name&Grnder" ng-model="searchText" />
+        <input type="checkbox" ng-model="exactMatch" />Exact March
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th ng-click="sortData('name')">Name <div ng-class="getSortClass('name')"></div></th>
+                    <th ng-click="sortData('dateOfBirth')">dateOfBirth <div ng-class="getSortClass('dateOfBirth')"></div></th>
+                    <th ng-click="sortData('gender')">gender <div ng-class="getSortClass('gender')"></div></th>
+                    <th ng-click="sortData('salary')">salary <div ng-class="getSortClass('salary')"></div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees | orderBy:sortColumn:reversesort | filter:searchText:exactMatch">
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.dateOfBirth | date:"dd/MM/yyyy"}}</td>
+                    <td>{{employee.gender}}</td>
+                    <td>{{employee.salary}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

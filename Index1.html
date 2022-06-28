@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html ng-app="Demo">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="Scripts/index1.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.30/angular-ui-router.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/Index1js.js"></script>
+</head>
+<body>
+    <table style="font-family: Arial">
+        <tr>
+            <td colspan="2" class="header">
+                <h1>
+                    WebSite Header
+                </h1>
+            </td>
+        </tr>
+        <tr>
+            <td class="leftMenu">
+                <a href="#/home">Home</a>
+                <a href="#/courses">Courses</a>
+                <a href="#/students">Students</a>
+            </td>
+            <td class="mainContent">
+              <ui-view></ui-view>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="footer">
+                <b>Website Footer</b>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

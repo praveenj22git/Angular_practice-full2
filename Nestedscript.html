@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html ng-app="Demo">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/Nestedsc.js"></script>
+</head>
+<body>
+    <div ng-controller="countryController">
+        {{name}}
+        <div ng-controller="stateController">
+            {{name}}
+            <div ng-controller="cityController">
+                {{name}}
+            </div>
+        </div>
+    </div>
+    <hr />
+    <br />
+    <div ng-controller="countryController">
+        {{name}}
+        <div ng-controller="stateController">
+            {{$parent.name}} - {{name}}
+            <div ng-controller="cityController">
+                {{$parent.$parent.name}} - {{$parent.name}} - {{name}}
+            </div>
+          <!--  <div ng-controller="cityController as cityCtrl">
+                {{cityCtrl.name}}
+            </div><div ng-controller="cityController as cityCtrl">
+                {{cityCtrl.name}}
+            </div> -->
+        </div>
+    </div>
+</body>
+</html>

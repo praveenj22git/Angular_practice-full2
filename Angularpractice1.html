@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en"  >
+<head>
+    <meta charset="utf-8" />
+    <title> Angular </title>
+    <script src="Scripts/angular.min.js"></script>
+    <link href="Styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+</head>
+<body>
+    <center>
+        <div ng-app="CustApp">
+            <script type="text/javascript">
+                var app = angular.module("CustApp", []);
+                app.controller('Details', function ($scope) {
+                    $scope.CusDet = {
+                        'Name': 'praveen',
+                        'Gender': 'Male',
+                        'job': 'Software Engineer Trainee'
+                    }
+                    $scope.Oneway = "Angular Js";
+                });
+            </script>
+            <h1>MVC Using In Js</h1>
+            <div ng-controller='Details'>
+                <h3>{{CusDet.Name}}</h3>
+                <h3>{{CusDet.Gender}}</h3>
+                <h3>{{CusDet.job}}</h3>
+            </div>
+            <hr />
+            <h1>One Way Bind</h1>
+            <div ng-controller='Details'>
+                <span ng-bind="Oneway"></span>
+            </div>
+            <hr />
+            <h1>Two Way Bind</h1>
+            <div ng-controller='Details'>
+                Enter:<input ng-model="Oneway" />
+                <h3>{{Oneway}}</h3>
+            </div>
+            <hr />
+            <div>
+                <h3>Using Input Type Number</h3>
+
+                <p>
+                    First Number:
+                    <input type="number" ng-model="c" />
+                </p>
+                <p>
+                    Second Number:
+                    <input type="number" ng-model="d" />
+                </p>
+                <p>Sum: {{ c - d }}</p>
+            </div>
+            <hr />
+            <h1>Expression</h1>
+            <div ng-init="l=10;b=30">
+                Area of rectangle l=10,b=30: {{l*b}}
+            </div>
+            <br />
+            <div ng-init="Fname='praveen';Lname='jaganathan'">
+                {{Fname}}
+                {{Lname}}
+            </div>
+            <br />
+            <div ng-init="arr=[12,20,30]">
+                {{arr[0]}}
+                {{arr[1]}}
+                <br />
+                <ol>
+                    <li ng-repeat="x in arr">{{x}}</li>
+                </ol>
+            </div>
+            <br />
+            <div ng-init="Emp={name:'praveen',Eid:'E1398',Age:21}">
+                Employee Name:{{Emp.name}}<br />
+                Employee Id:{{Emp.Eid}}<br />
+                Employee Age:{{Emp.Age}}
+            </div>
+            <hr />
+            <p><h3>Events In Angular Js:</h3> <a href="Events.html" class="btn btn-info">Events</a></p>
+            <br />
+            <hr />
+            <p><h3>Sorting In Angular Js: </h3><a href="Sortings.html" class="btn btn-info">Sorting</a></p>
+        </div>
+    </center>
+</body>
+</html>

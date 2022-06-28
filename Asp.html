@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular.js"></script>
+</head>
+<body ng-app="myModule2">
+        <script type="text/javascript">
+            var app = angular
+                .module("myModule2",[])
+                .controller("myController2", function($scope, $http) {
+
+                    $http({
+                        method: 'Get',
+                        URL:' EmployeeServies.asmx/GetAllEmployees'})
+               
+                        .then(function (response) {
+                            $scope.employees = response.data;
+                     });
+
+                });
+        </script>
+        <div ng-controller="myController2">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>name</th>
+                        <th>gender</th>
+                        <th>salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="employee in employees">
+                        <td>{{employee.id}}</td>
+                        <td>{{employee.name}}</td>
+                        <td>{{employee.gender}}</td>
+                        <td>{{employee.salary}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</body>
+</html>
